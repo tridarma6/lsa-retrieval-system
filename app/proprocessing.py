@@ -3,6 +3,11 @@ import string
 
 from sklearn.base import BaseEstimator, TransformerMixin
 
+# pro processing
+# 1. Tokenisasi
+# 2. Stopword removal
+# 3. Stemming
+
 
 def clean_text(text: str) -> str:
     """
