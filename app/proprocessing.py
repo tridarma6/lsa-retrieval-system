@@ -9,7 +9,7 @@ nltk.download('stopwords')
 
 # --- Inisialisasi tokenizer, stopwords, dan stemmer ---
 tokenizer = RegexpTokenizer(r'\w+')
-stop_words = set(stopwords.words('indonesian'))
+stop_words = set(stopwords.words('english'))
 stemmer = StemmerFactory().create_stemmer()
 
 # --- Fungsi Preprocessing ---
