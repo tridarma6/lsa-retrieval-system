@@ -25,10 +25,10 @@ df = pd.read_csv(file_path, nrows=50)
 df = df.dropna(subset=['summaries'])
 documents = df['summaries'].astype(str).tolist()
 
-# --- Preprocessing Semua Dokumen ---
+# --- Preprocessing Semua Baris Abstract ---
 tokenized_documents = [preprocess(doc) for doc in documents]
 
-# # --- Tampilkan Hasil Preprocessing Contoh 5 Dokumen ---
+# # --- Tampilkan Hasil Preprocessing 5 Baris Abstract ---
 # for i, doc in enumerate(tokenized_documents[:5], 1):
 #     print(f"Dokumen {i}:\n{doc}\n")
 
@@ -45,10 +45,10 @@ preprocessed_query = preprocess(query)
 query_string = ' '.join(preprocessed_query)
 query_vector = vectorizer.transform([query_string])
 
-# --- Hitung Cosine Similarity antara Query dan Dokumen ---
+# --- Hitung Cosine Similarity antara Query dan Abtract ---
 similarities = cosine_similarity(query_vector, tfidf_matrix).flatten()
 
-# --- Tampilkan Top 5 Hasil Paling Mirip ---
+# --- Tampilkan Top 5 Abstract Paling Relevan Dengan Query dan Hasil Paling Mirip ---
 df['Similarity Score'] = similarities
 df_result = df.sort_values(by='Similarity Score', ascending=False)
 
