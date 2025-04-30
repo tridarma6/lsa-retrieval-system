@@ -20,7 +20,7 @@ def preprocess(text):
     return [stemmer.stem(w) for w in tokens if w not in stop_words]
 
 # --- Load Data dari CSV (50 baris) ---
-file_path = "arxiv_data.csv"
+file_path = "papers_dataset.csv"
 df = pd.read_csv(file_path, nrows=50)
 df = df.dropna(subset=['summaries'])
 documents = df['summaries'].astype(str).tolist()
