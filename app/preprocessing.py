@@ -53,5 +53,5 @@ df['Similarity Score'] = similarities
 df_result = df.sort_values(by='Similarity Score', ascending=False)
 
 print(f"\nQuery: {query}")
-print("\nTop 5 Dokumen Paling Relevan:")
+print("\nTop 5 Abstract Paling Relevan Dengan Query:")
 print(df_result[['titles', 'Similarity Score']].head(5))    
