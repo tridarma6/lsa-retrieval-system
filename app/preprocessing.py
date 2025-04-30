@@ -40,7 +40,7 @@ vectorizer = TfidfVectorizer()
 tfidf_matrix = vectorizer.fit_transform(cleaned_documents)
 
 # --- Input Query dari Pengguna ---
-query = input("Masukkan query pencarian: ")
+query = input("Masukkan query pencarian berupa abstract: ")
 preprocessed_query = preprocess(query)
 query_string = ' '.join(preprocessed_query)
 query_vector = vectorizer.transform([query_string])
