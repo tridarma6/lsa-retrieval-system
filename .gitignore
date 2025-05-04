@@ -1,5 +1,0 @@
-app/data/papers.csv
-app/data/processed_papers.csv
-app/model/document_vectors.pkl
-app/model/lsa_model.pkl
-app/model/tfidf_vectorizer.pkl

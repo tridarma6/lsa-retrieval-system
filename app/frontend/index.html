@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Similarity Search</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+    }
+    input[type="text"] {
+      width: 60%;
+      padding: 10px;
+      font-size: 16px;
+    }
+    button {
+      padding: 10px 15px;
+      font-size: 16px;
+      margin-left: 10px;
+    }
+    .result {
+      margin-top: 30px;
+    }
+    .item {
+      border: 1px solid #ccc;
+      padding: 15px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+    }
+    .score {
+      font-size: 14px;
+      color: gray;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Cari Abstrak yang Mirip</h1>
+  <p>Masukkan query abstract:</p>
+  <input type="text" id="queryInput" placeholder="Contoh: deep learning in computer vision">
+  <button onclick="submitQuery()">Cari</button>
+
+  <div class="result" id="results"></div>
+
+  <script>
+    function submitQuery() {
+      const query = document.getElementById('queryInput').value;
+      if (!query.trim()) {
+        alert("Silakan masukkan query!");
+        return;
+      }
+
+      fetch('http://localhost:5000/search', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ query: query })
+      })
+      .then(response => response.json())
+      .then(data => {
+        const resultDiv = document.getElementById('results');
+        resultDiv.innerHTML = "<h2>Hasil Teratas:</h2>";
+
+        if (data.results.length === 0) {
+          resultDiv.innerHTML += "<p>Tidak ditemukan hasil relevan.</p>";
+          return;
+        }
+
+        data.results.forEach(item => {
+          resultDiv.innerHTML += `
+            <div class="item">
+              <strong>${item.titles}</strong><br>
+              <span class="score">Similarity Score: ${item['Similarity Score'].toFixed(4)}</span>
+            </div>
+          `;
+        });
+      })
+      .catch(error => {
+        console.error('Terjadi kesalahan:', error);
+        alert('Gagal mengambil data. Pastikan server backend sedang berjalan.');
+      });
+    }
+  </script>
+
+</body>
+</html>
