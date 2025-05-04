@@ -242,7 +242,7 @@ header {
 
 .container .search-container .container-result h2 {
     font-size: 16px;
-    color: #0F114C;
+    color: #000000;
 }
 
 .container .search-container .input-container {
@@ -373,13 +373,21 @@ header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    background-color: #e4f0f1;
 }
 
 .item strong {
+    display: flex;
+    flex-direction: column;
     font-size: 16px;
     color: #3a3838;
     font-weight: medium;
 }
+
+.item strong p {
+    color: indigo;
+}
+
 
 .score {
     font-size: 14px;
